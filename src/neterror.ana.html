@@ -6702,6 +6702,10 @@ function onDocumentLoad() {
   // `loadTimeDataRaw` is injected to the `window` scope from C++.
   loadTimeData.data = window.loadTimeDataRaw;
   jstProcess(new JsEvalContext(window.loadTimeDataRaw), document.body);
+  // HighLightme: 
+  // Import!!
+  // Load Dino Game resources
+  // Without this, even if Runner instance is created, the game won't run.
 
   // Sets up the proper button layout for the current platform.
   const buttonsDiv = document.getElementById('buttons');

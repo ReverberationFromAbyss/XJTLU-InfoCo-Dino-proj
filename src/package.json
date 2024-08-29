@@ -1,0 +1,7 @@
+{
+  "name": "dino",
+  "version": "0.0",
+  "description": "",
+  "main": "./neterror.js",
+  "private": true
+}

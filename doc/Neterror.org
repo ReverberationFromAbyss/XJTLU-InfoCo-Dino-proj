@@ -1,0 +1,29 @@
+* Proj. Dino
+
+** 加载过程
+*** 入口文件：neterror.html
+*** 完整加载过程
++ 浏览器加载 neterror.html 网页文件
++ html 头部定义元数据
++ 由 link 标签加载样式表`.css'文件，包括 security_interstitials 中的两个素材（过于耦合）和 neterror.css
++ 最后由 script 标签加载编译后的 js 脚本文件`neterror.roll.js'
+  - neterror.roll.js 的组织：
+    + 'chrome://resources/js/jstemplate_compiled.js'：1~10 in <script> tag
+    + 'constants.js'：12~17 in <script> tag
+    + 'chrome://interstitials/common/resources/interstitial_mobile_nav.js'：23~73 in <script> tag, 其中，向文档类添加 setupMobileNav 函数于'DOMContentLoaded'函数钩子
+    + 'chrome://resources/js/load_time_data.js' 75~262 in <script> t75+187
+ag, provide `loadTimeData' Only, used for both neterror.js and offline.js, which is included only once
+    + 'offline.js' 264~4807 in <script> tag
+      - 'constant.js'
+      - 'offline-sprite-definitions.js'
+      - 'offline.js' rest
+    + 'neterror.js' 4808~rest
+  - neterror.roll.js 的加载：
+    + 由 neterror.js 文件在末尾处通过 document.addEventListener('DOMContentLoaded', onDocumentLoad);添加函数钩子
+      document reference: [[https://developer.mozilla.org/zh-CN/docs/Web/API/Document/DOMContentLoaded_event]]
+    + 在网页脚本完全加载完毕后（层叠样式表不一定加载完成）执行所有 DOMContentLoaded 中的函数钩子
+    + 最后执行由 neterror.js 中定义的 onDocumentLoad()函数,此为整个小恐龙游戏的入口函数
++ onDocumentLoad():
+
+#  LocalWords:  neterror onDocumentLoad interstitials js DOMContentLoaded nav
+#  LocalWords:  Proj Dino
